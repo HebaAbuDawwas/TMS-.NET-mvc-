@@ -1,0 +1,67 @@
+﻿@model ProjectSummary
+
+@{
+    ViewData["Title"] = "ProjectSummaryReport";
+}
+
+<h2>Project Summary Report</h2>
+
+<form asp-action="ShowProjectSummary">
+ 
+    <div class="form-group ">
+        <label asp-for="Name">
+        </label>
+        <div>
+            <input asp-for="Name" class="form-check" />
+
+        </div>
+        <div style="position:relative; top:20px;">
+            <input type="submit" value="Search" class="btn btn-secondary" />
+
+        </div>
+
+    </div>
+        
+       
+   
+
+</form>
+
+
+
+<div class="card border-success mb-3" style="max-width: 500rem; position: relative; top: 30px;">
+    <div class="card-header">Project Summary Report</div>
+    <div class="card-body">
+        @if (Model.Projects is null || Model.Projects.Count() == 0 )
+        {
+            <div class="alert alert-dismissible alert-warning">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <h4 class="alert-heading">Warning!</h4>
+                <p class="mb-0">no project match .</p>
+            </div>
+        }
+        else
+        {
+            foreach (var project in Model.Projects)
+            {
+
+                <div class="card border-primary mb-3" style="max-width: 100rem;">
+                    <div class="card-header">@project.Name</div>
+                    <div class="card-body">
+                        @foreach (var employeeProject in project.Employeeprojects)
+                        {
+                        <h4 class="card-title">@employeeProject.Employee.Name
+                            <span class="badge rounded-pill bg-secondary">@employeeProject.Employee.FeesPerDay Per Day</span>                        
+                        </h4>
+                        
+
+                        }
+                    </div>
+                    </div>
+
+
+                    }
+                    }
+                </div>
+            </div>
+

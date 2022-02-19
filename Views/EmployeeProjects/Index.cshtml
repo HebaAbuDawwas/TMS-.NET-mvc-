@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TMS.Models.EmployeeProject>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+     
+                @item.StartDate.ToShortDateString()
+            </td>
+            <td>
+                @item.EndDate.ToShortDateString()
+            </td>
+            <td>
+                @item.Status
+            </td>
+            <td>
+                @item.Employee.Name
+            </td>
+            <td>
+                @item.Project.Name
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmployeeProjectId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EmployeeProjectId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmployeeProjectId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,58 @@
+﻿@model FindProject
+
+@{
+    ViewData["Title"] = "FindProject";
+}
+<form method="post" >
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Size"></label>
+        <select asp-for="Size" class="form-control" asp-items="@Html.GetEnumSelectList<eSize>()"></select>
+    </div>
+    <input type="submit" value="Search" class="btn btn-primary" />
+</form>
+<hr />
+<h3>Search Result</h3>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="Name"></label>
+            </th>
+            <th>
+                <label asp-for="Size"></label>
+
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model.Projects is null || Model.Projects.Count()==0 )
+            {
+            <tr>
+                <td>
+                    No Projects Founds
+                </td>
+            </tr>
+            }
+         else
+        foreach (var item in Model.Projects)
+        {
+
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Size
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
